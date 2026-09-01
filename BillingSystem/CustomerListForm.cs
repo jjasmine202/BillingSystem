@@ -13,6 +13,7 @@ namespace BillingSystem
         public CustomerListForm()
         {
             InitializeComponent();
+            this.Text = "Billing System v1.0 - Customer List (Dail)";
         }
 
         private void CustomerListForm_Load(object sender, EventArgs e)
