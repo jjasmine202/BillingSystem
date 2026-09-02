@@ -1,5 +1,5 @@
 namespace BillingSystem
-    ///trying the part 9 (deliberate conflict
+    // App version: 1.0 - Edited by J. Edio
 {
     internal static class Program
     {
