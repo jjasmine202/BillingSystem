@@ -13,8 +13,9 @@ namespace BillingSystem
         public LoginForm()
         {
             InitializeComponent();
+            this.Text = "Billing System v1.0 - Login (J. Edio)";
         }
-
+        
         private void LoginForm_Load(object sender, EventArgs e)
         {
 
