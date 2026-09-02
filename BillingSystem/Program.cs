@@ -1,4 +1,5 @@
 namespace BillingSystem
+    // App version: 1.0 - Edited by J. Edio
 {
     internal static class Program
     {
