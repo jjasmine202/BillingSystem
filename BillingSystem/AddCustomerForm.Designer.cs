@@ -144,7 +144,7 @@
             btnSave.TabIndex = 11;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
-            btnSave.Click += button1_Click;
+            btnSave.Click += btnSave_Click;
             // 
             // btnClear
             // 
