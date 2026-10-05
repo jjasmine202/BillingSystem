@@ -12,7 +12,9 @@ namespace BillingSystem.Database
         private const string SERVER = "localhost";
         private const string DATABASE = "BillingDB";
         private const string UID = "root";
-        private const string PASSWORD = "AppdevGrp52026"; 
+        private const string PASSWORD = "AppdevGrp52026";
+
+
         private static string ConnectionString =>
         $"server={SERVER};database={DATABASE};uid={UID};pwd={PASSWORD};";
         // Returns an open-ready MySqlConnection object.
