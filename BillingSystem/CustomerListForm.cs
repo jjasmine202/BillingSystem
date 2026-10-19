@@ -345,5 +345,10 @@ namespace BillingSystem
                 }
             }
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
