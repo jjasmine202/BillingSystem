@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using BillingSystem.Database;
+using BillingSystem.Utils;
 
 
 
@@ -180,11 +181,19 @@ namespace BillingSystem
 
                         if (rowsAffected > 0)
                         {
+
+                            AuditLogger.Log("ADD_CUSTOMER",
+   $"New customer '{txtFullName.Text.Trim()}' added by {AppSession.CurrentUsername}.");
+
                             MessageBox.Show("Customer added successfully.",
                                 "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             this.Close();
                         }
+
+                       
+
+
                         else
                         {
                             MessageBox.Show("Failed to add customer.",
@@ -231,12 +240,20 @@ namespace BillingSystem
 
                         if (rowsAffected > 0)
                         {
+
+                            AuditLogger.Log("EDIT_CUSTOMER",
+  $"Customer ID {_editCustomerId} updated by {AppSession.CurrentUsername}.");
+
+
                             MessageBox.Show("Customer updated successfully.",
                                 "Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             // Close the form — CustomerListForm will refresh on close
                             this.Close();
                         }
+
+                      
+
                         else
                         {
                             MessageBox.Show("Update failed. The record may no longer exist.",
