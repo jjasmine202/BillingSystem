@@ -347,4 +347,4 @@
         private System.Windows.Forms.Timer statusTimer;
         private Button btnViewBilling;
     }
-}   
+}

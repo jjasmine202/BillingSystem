@@ -155,7 +155,7 @@ namespace BillingSystem
 
 
 
-        private void LoadCustomers()
+        private void LoadCustomers(string searchTerm = "")
         {
             try
             {
@@ -165,9 +165,14 @@ namespace BillingSystem
                 using (var conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
-                    string sql = "SELECT CustomerID, FullName, Address, ContactNumber, Email, Balance FROM Customers ORDER BY FullName;";
+                    string sql = @"SELECT CustomerID, FullName, Address, ContactNumber, Email, Balance
+                                   FROM Customers
+                                   WHERE (@Search = '' OR FullName LIKE @Pattern OR Address LIKE @Pattern)
+                                   ORDER BY FullName;";
                     using (var cmd = new MySqlCommand(sql, conn))
                     {
+                        cmd.Parameters.AddWithValue("@Search", searchTerm.Trim());
+                        cmd.Parameters.AddWithValue("@Pattern", "%" + searchTerm.Trim() + "%");
                         using (var reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -493,22 +498,33 @@ namespace BillingSystem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // TODO: Add your code for the Add button
+            using (var addForm = new AddCustomerForm())
+            {
+                if (addForm.ShowDialog(this) == DialogResult.OK)
+                    LoadCustomers(txtSearch.Text);
+                else
+                    LoadCustomers(txtSearch.Text);
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            // TODO: Add your search filtering code
+            // Live search by customer name or partial address.
+            LoadCustomers(txtSearch.Text);
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // TODO: Add your search key-press code
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                LoadCustomers(txtSearch.Text);
+            }
         }
 
         private void btnSearch_Click_1(object sender, EventArgs e)
         {
-            // TODO: Add your search button code
+            LoadCustomers(txtSearch.Text);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -516,8 +532,9 @@ namespace BillingSystem
             AuditLogger.Log("LOGOUT",
     $"{AppSession.CurrentFullName} ({AppSession.CurrentRole}) logged out.");
             AppSession.Clear();
-
-
+            var loginForm = new LoginForm();
+            loginForm.Show();
+            this.Close();
         }
 
 

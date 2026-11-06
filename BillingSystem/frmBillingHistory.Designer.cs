@@ -58,7 +58,7 @@
             dgvBilling.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBilling.Size = new Size(800, 450);
             dgvBilling.TabIndex = 1;
-       
+
             // 
             // btnClose
             // 
