@@ -10,10 +10,10 @@ namespace BillingSystem.Database
     public class DatabaseConnection
     {
         // Connection string settings — update Password if needed
-        private const string SERVER = "localhost";
+        private const string SERVER = "10.0.0.40";
         private const string DATABASE = "BillingDB";
-        private const string UID = "root";
-        private const string PASSWORD = "AppdevGrp52026";
+        private const string UID = "billing_user";
+        private const string PASSWORD = "BillingPass123!";
 
 
         private static string ConnectionString =>
